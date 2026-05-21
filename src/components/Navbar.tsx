@@ -19,14 +19,14 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/95">
       <nav
         className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
         <a
           href="#home"
-          className="text-base font-bold text-slate-950 transition hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+          className="text-base font-bold text-slate-950 transition hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:!text-slate-100 dark:hover:!text-blue-300"
         >
           Pham Van Nam
         </a>
@@ -36,7 +36,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-600 transition hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+              className="text-sm font-medium text-slate-600 transition hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:!text-slate-300 dark:hover:!text-blue-300"
             >
               {link.label}
             </a>
@@ -47,7 +47,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={toggleLanguage}
-            className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:border-slate-700 dark:!text-slate-200 dark:hover:bg-slate-800 dark:hover:!text-blue-300"
           >
             {t.nav.language}
           </button>
@@ -55,7 +55,7 @@ export default function Navbar() {
             type="button"
             onClick={toggleTheme}
             aria-label={theme === "light" ? t.nav.themeLight : t.nav.themeDark}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:border-slate-700 dark:!text-slate-200 dark:hover:bg-slate-800 dark:hover:!text-blue-300"
           >
             {theme === "light" ? <Moon size={18} aria-hidden="true" /> : <Sun size={18} aria-hidden="true" />}
           </button>
@@ -63,7 +63,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 md:hidden dark:border-slate-700 dark:!text-slate-200 dark:hover:bg-slate-800 dark:hover:!text-blue-300"
           aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
           aria-expanded={isOpen}
           aria-controls={menuId}
@@ -76,14 +76,14 @@ export default function Navbar() {
       {isOpen ? (
         <div
           id={menuId}
-          className="border-t border-slate-200 bg-white px-4 py-3 shadow-sm md:hidden"
+          className="border-t border-slate-200 bg-white px-4 py-3 shadow-sm md:hidden dark:border-slate-800 dark:bg-slate-950"
         >
           <div className="mx-auto grid max-w-6xl gap-2">
             <div className="mb-2 flex gap-2">
               <button
                 type="button"
                 onClick={toggleLanguage}
-                className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:border-slate-700 dark:!text-slate-200 dark:hover:bg-slate-800 dark:hover:!text-blue-300"
               >
                 {t.nav.language}
               </button>
@@ -91,7 +91,7 @@ export default function Navbar() {
                 type="button"
                 onClick={toggleTheme}
                 aria-label={theme === "light" ? t.nav.themeLight : t.nav.themeDark}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:border-slate-700 dark:!text-slate-200 dark:hover:bg-slate-800 dark:hover:!text-blue-300"
               >
                 {theme === "light" ? <Moon size={18} aria-hidden="true" /> : <Sun size={18} aria-hidden="true" />}
               </button>
@@ -100,7 +100,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-blue-50 hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:!text-slate-200 dark:hover:bg-slate-800 dark:hover:!text-blue-300"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}

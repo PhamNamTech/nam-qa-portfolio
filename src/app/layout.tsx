@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import { PreferencesProvider } from "@/components/PreferencesProvider";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
+const beVietnam = Be_Vietnam_Pro({
+  variable: "--font-be-vietnam",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -45,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} scroll-smooth antialiased`}>
+    <html lang="en" className={`${beVietnam.variable} scroll-smooth antialiased`}>
       <body>
         <PreferencesProvider>{children}</PreferencesProvider>
       </body>
