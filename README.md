@@ -1,0 +1,159 @@
+# Pham Van Nam QA Portfolio
+
+A personal portfolio website for Pham Van Nam, a Computer Science student and Fresher Software Tester / QA Automation Engineer.
+
+## Tech Stack
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- lucide-react
+- ESLint
+
+## Features
+
+- Responsive single-page portfolio
+- QA-focused hero section
+- About section
+- QA skills section
+- Internship experience section
+- Testing projects with category filtering
+- Dedicated project detail pages
+- Testing artifacts section with sample QA files
+- Testing workflow section
+- Contact section
+- CV download setup
+- SEO metadata for portfolio discovery
+
+## Sample QA Artifacts
+
+The portfolio includes sample/demo QA artifacts:
+
+- Test case sheet sample
+- Bug report sample
+- Postman collection sample
+- Regression checklist
+- SQL validation samples
+- Selenium test scripts guide
+
+All artifact files are sample/demo materials created for portfolio purposes and do not contain confidential company or client information.
+
+## Project Detail Pages
+
+The portfolio includes dedicated pages for each QA practice project:
+
+- `/projects/manual-testing-ecommerce`
+- `/projects/api-testing-user-management`
+- `/projects/selenium-web-automation`
+- `/projects/test-case-design-ep-bva`
+- `/projects/bug-report-samples`
+
+## Folder Structure
+
+```text
+src/
+  app/
+    globals.css
+    layout.tsx
+    page.tsx
+    projects/
+      [slug]/
+        page.tsx
+  components/
+    Navbar.tsx
+    HeroSection.tsx
+    AboutSection.tsx
+    SkillsSection.tsx
+    ExperienceSection.tsx
+    ProjectsSection.tsx
+    ProjectCard.tsx
+    ArtifactsSection.tsx
+    ArtifactCard.tsx
+    TestingWorkflowSection.tsx
+    ContactSection.tsx
+    Footer.tsx
+  data/
+    artifacts.ts
+    contact.ts
+    experience.ts
+    projects.ts
+    skills.ts
+    workflow.ts
+  types/
+    portfolio.ts
+public/
+  artifacts/
+    bug-report-sample.md
+    postman-user-management-collection.json
+    regression-checklist-sample.md
+    selenium-test-scripts-readme.md
+    sql-validation-samples.md
+    test-case-sheet-sample.csv
+  cv/
+    Pham-Van-Nam-CV.pdf
+```
+
+## Getting Started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in a browser.
+
+## Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+## Deployment
+
+This project is ready to deploy on Vercel.
+
+Recommended steps:
+
+1. Push the project to GitHub.
+2. Go to Vercel.
+3. Import the GitHub repository.
+4. Keep the default Next.js build settings.
+5. Deploy.
+
+Build command:
+
+```bash
+npm run build
+```
+
+Development command:
+
+```bash
+npm run dev
+```
+
+Output:
+
+Use the default Next.js output handled by Vercel.
+
+## Final Checklist
+
+- Real CV file is available at `public/cv/Pham-Van-Nam-CV.pdf`.
+- Real GitHub URL is configured.
+- Real LinkedIn URL is configured.
+- Check all artifact links.
+- Check all project detail pages.
+- Run `npm run build` before deployment.
+
+## Remaining Placeholders
+
+- Add a real source code repository link for the Selenium practice project when available.

@@ -1,0 +1,266 @@
+{
+  "info": {
+    "name": "User Management API Testing Sample",
+    "description": "Sample Postman collection created for portfolio demonstration purposes. It uses public demo endpoints and does not include sensitive data.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://reqres.in/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET List Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users",
+          "host": ["{{base_url}}"],
+          "path": ["users"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response time is below 2000ms', function () {",
+              "  pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});",
+              "",
+              "pm.test('Response is valid JSON and has users list', function () {",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData).to.have.property('data');",
+              "  pm.expect(jsonData.data).to.be.an('array');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Single User",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/2",
+          "host": ["{{base_url}}"],
+          "path": ["users", "2"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response time is below 2000ms', function () {",
+              "  pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});",
+              "",
+              "pm.test('Response has expected user fields', function () {",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData.data).to.have.property('id');",
+              "  pm.expect(jsonData.data).to.have.property('email');",
+              "  pm.expect(jsonData.data).to.have.property('first_name');",
+              "  pm.expect(jsonData.data).to.have.property('last_name');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET User Not Found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/999",
+          "host": ["{{base_url}}"],
+          "path": ["users", "999"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 404', function () {",
+              "  pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test('Response time is below 2000ms', function () {",
+              "  pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST Create User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Demo User\",\n  \"job\": \"QA Tester\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/users",
+          "host": ["{{base_url}}"],
+          "path": ["users"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 201', function () {",
+              "  pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test('Response has created user data', function () {",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData).to.have.property('name');",
+              "  pm.expect(jsonData).to.have.property('job');",
+              "  pm.expect(jsonData).to.have.property('id');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT Update User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Demo User Updated\",\n  \"job\": \"QA Intern\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/users/2",
+          "host": ["{{base_url}}"],
+          "path": ["users", "2"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has updated fields', function () {",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData.name).to.eql('Demo User Updated');",
+              "  pm.expect(jsonData.job).to.eql('QA Intern');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PATCH Update User Job",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"job\": \"Fresher QA Tester\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/users/2",
+          "host": ["{{base_url}}"],
+          "path": ["users", "2"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has updated job', function () {",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData.job).to.eql('Fresher QA Tester');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/users/2",
+          "host": ["{{base_url}}"],
+          "path": ["users", "2"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 204', function () {",
+              "  pm.response.to.have.status(204);",
+              "});",
+              "",
+              "pm.test('Response time is below 2000ms', function () {",
+              "  pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
