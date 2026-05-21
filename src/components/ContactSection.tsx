@@ -3,26 +3,28 @@
 import { ArrowDownToLine, Mail } from "lucide-react";
 import { useState } from "react";
 import { contactInfo, contactItems } from "@/data/contact";
+import { usePreferences } from "@/components/PreferencesProvider";
 
 export default function ContactSection() {
   const [emailStatus, setEmailStatus] = useState("");
+  const { t } = usePreferences();
 
   async function handleEmailClick() {
     try {
       await navigator.clipboard.writeText(contactInfo.email);
-      setEmailStatus("Email address copied. Your mail app should open if supported.");
+      setEmailStatus(t.contact.copied);
     } catch {
-      setEmailStatus("Opening your mail app if supported.");
+      setEmailStatus(t.contact.opening);
     }
   }
 
   return (
-    <section id="contact" className="bg-slate-50 py-14 sm:py-20">
+    <section id="contact" className="bg-slate-50 py-12 sm:py-16">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
         <div>
-          <p className="text-sm font-bold uppercase text-blue-600">Contact Me</p>
+          <p className="text-sm font-bold uppercase text-blue-600">{t.contact.label}</p>
           <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">
-            Let&apos;s connect
+            {t.contact.title}
           </h2>
           <p className="mt-4 text-base leading-8 text-slate-600">{contactInfo.availability}</p>
           <p className="mt-4 text-base leading-8 text-slate-600">{contactInfo.ctaText}</p>
@@ -33,14 +35,14 @@ export default function ContactSection() {
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 sm:w-auto"
             >
               <Mail size={16} aria-hidden="true" />
-              Email Me
+              {t.contact.email}
             </a>
             <a
               href={contactInfo.cvPath}
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 sm:w-auto"
             >
               <ArrowDownToLine size={16} aria-hidden="true" />
-              Download CV
+              {t.contact.cv}
             </a>
           </div>
           {emailStatus ? (
@@ -51,7 +53,7 @@ export default function ContactSection() {
         </div>
 
         <div className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-          <h3 className="text-lg font-bold text-slate-950">Contact Information</h3>
+          <h3 className="text-lg font-bold text-slate-950">{t.contact.info}</h3>
           <div className="mt-5 grid gap-4">
             {contactItems.map(({ icon: Icon, label, value, href, external }) => {
               const content = (

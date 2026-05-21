@@ -1,18 +1,23 @@
+"use client";
+
 import { skillCategories } from "@/data/skills";
+import { usePreferences } from "@/components/PreferencesProvider";
 
 export default function SkillsSection() {
+  const { t } = usePreferences();
+
   return (
-    <section id="skills" className="bg-white py-14 sm:py-20">
+    <section id="skills" className="bg-white py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-bold uppercase text-blue-600">QA Skills</p>
+        <p className="text-sm font-bold uppercase text-blue-600">{t.skills.label}</p>
         <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">
-          Testing foundation and tools
+          {t.skills.title}
         </h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map(({ title, icon: Icon, items }) => (
             <article
               key={title}
-              className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md sm:p-6"
+              className="rounded-lg border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-0.5 sm:p-6"
             >
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">

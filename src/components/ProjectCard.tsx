@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { Project } from "@/types/portfolio";
+import { usePreferences } from "@/components/PreferencesProvider";
 
 export default function ProjectCard({
   title,
@@ -8,8 +11,10 @@ export default function ProjectCard({
   shortDescription,
   tags,
 }: Project) {
+  const { t } = usePreferences();
+
   return (
-    <article className="flex h-full min-w-0 flex-col rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md sm:p-6">
+    <article className="flex h-full min-w-0 flex-col rounded-lg border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-0.5 sm:p-6">
       <p className="w-fit rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
         {category}
       </p>
@@ -29,7 +34,7 @@ export default function ProjectCard({
         href={`/projects/${slug}`}
         className="mt-6 inline-flex w-fit items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
       >
-        View Details
+        {t.projects.details}
       </Link>
     </article>
   );

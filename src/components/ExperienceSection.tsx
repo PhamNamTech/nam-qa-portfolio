@@ -1,13 +1,18 @@
+"use client";
+
 import { CalendarDays, CheckCircle2, MapPinned } from "lucide-react";
 import { experiences } from "@/data/experience";
+import { usePreferences } from "@/components/PreferencesProvider";
 
 export default function ExperienceSection() {
+  const { t } = usePreferences();
+
   return (
-    <section id="experience" className="bg-slate-50 py-14 sm:py-20">
+    <section id="experience" className="bg-slate-50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-bold uppercase text-blue-600">Internship Experience</p>
+        <p className="text-sm font-bold uppercase text-blue-600">{t.experience.label}</p>
         <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">
-          Tester / QC Intern
+          {t.experience.title}
         </h2>
 
         <div className="mt-8 grid gap-6">

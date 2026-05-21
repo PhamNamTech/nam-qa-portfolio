@@ -1,4 +1,7 @@
+"use client";
+
 import { contactInfo } from "@/data/contact";
+import { usePreferences } from "@/components/PreferencesProvider";
 
 const footerLinks = [
   { label: "GitHub", href: contactInfo.githubUrl, external: true },
@@ -8,10 +11,12 @@ const footerLinks = [
 ];
 
 export default function Footer() {
+  const { t } = usePreferences();
+
   return (
     <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-sm text-slate-600 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-        <p>&copy; 2026 Pham Van Nam. Fresher Software Tester / QA Automation Engineer.</p>
+        <p>&copy; 2026 Pham Van Nam. {t.footer.text}</p>
         <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer navigation">
           {footerLinks.map((link) => (
             link.href === "#" ? (

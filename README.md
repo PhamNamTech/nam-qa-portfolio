@@ -13,6 +13,8 @@ A personal portfolio website for Pham Van Nam, a Computer Science student and Fr
 ## Features
 
 - Responsive single-page portfolio
+- Light/dark theme toggle
+- English/Vietnamese language toggle for the main portfolio UI
 - QA-focused hero section
 - About section
 - QA skills section
