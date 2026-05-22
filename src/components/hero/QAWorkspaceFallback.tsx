@@ -1,11 +1,11 @@
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 
 const focusItems = [
-  "Manual Testing",
-  "API Testing",
-  "Selenium Automation",
-  "Bug Reporting",
-  "SQL Validation",
+  "Test Cases - 12 sample cases",
+  "Bug Reports - Jira-style format",
+  "API Testing - Postman collection",
+  "Automation - Selenium WebDriver",
+  "SQL Validation - Data checking",
 ];
 
 export default function QAWorkspaceFallback() {
@@ -13,8 +13,8 @@ export default function QAWorkspaceFallback() {
     <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold text-blue-600">QA Focus</p>
-          <h2 className="mt-1 text-xl font-bold text-slate-950">Testing Workspace</h2>
+          <p className="text-sm font-semibold text-blue-600">QA Workspace</p>
+          <h2 className="mt-1 text-xl font-bold text-slate-950">QA Command Center</h2>
         </div>
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white">
           <ShieldCheck size={20} aria-hidden="true" />
