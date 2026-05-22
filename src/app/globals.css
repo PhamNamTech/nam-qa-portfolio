@@ -41,13 +41,16 @@ section {
   padding: 10px 12px;
   box-shadow: 0 12px 28px rgb(15 23 42 / 0.08);
   backdrop-filter: blur(10px);
+  cursor: pointer;
   animation: qa-card-float 3.8s ease-in-out infinite;
 }
 
-.qa-command-card-alert {
+.qa-command-card-active {
+  border-color: #2563eb;
+  background: rgb(239 246 255 / 0.96);
   box-shadow:
-    0 12px 28px rgb(15 23 42 / 0.08),
-    0 0 0 4px rgb(249 115 22 / 0.08);
+    0 16px 34px rgb(37 99 235 / 0.12),
+    0 0 0 4px rgb(37 99 235 / 0.16);
 }
 
 @keyframes qa-card-float {
@@ -173,4 +176,10 @@ section:target {
   border-color: #334155;
   background: rgb(15 23 42 / 0.88);
   box-shadow: none;
+}
+
+.dark .qa-command-card-active {
+  border-color: #60a5fa;
+  background: rgb(30 58 138 / 0.48);
+  box-shadow: 0 0 0 4px rgb(96 165 250 / 0.12);
 }

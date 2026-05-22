@@ -61,15 +61,15 @@ export default function CompactDashboard() {
 
   return (
     <main className="bg-slate-50 text-slate-900 transition-colors duration-200">
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[330px_1fr] lg:px-8">
-        <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-6 sm:px-6 sm:py-8 xl:grid-cols-[minmax(280px,330px)_1fr] lg:px-8">
+        <aside className="min-w-0 space-y-4 xl:sticky xl:top-24 xl:self-start">
           <section
             id="home"
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+            className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
           >
             <div>
               <p className="text-sm font-semibold text-emerald-600">{t.hero.badge}</p>
-              <h1 className="mt-4 text-3xl font-bold leading-tight text-slate-950">
+              <h1 className="mt-4 break-words text-3xl font-bold leading-tight text-slate-950">
                 Pham Van Nam
               </h1>
               <p className="mt-2 text-sm font-semibold leading-6 text-blue-600">
@@ -98,7 +98,7 @@ export default function CompactDashboard() {
 
           <section
             id="contact"
-            className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+            className="min-w-0 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
           >
             <h2 className="text-base font-bold text-slate-950">{t.contact.title}</h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">{contactInfo.availability}</p>
@@ -139,7 +139,7 @@ export default function CompactDashboard() {
           </section>
         </aside>
 
-        <div className="space-y-5">
+        <div className="min-w-0 space-y-5">
           <section className="hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm md:block">
             <div className="relative">
               <div className="absolute right-10 top-8 h-28 w-28 rounded-full bg-blue-200/30 blur-3xl" />

@@ -17,7 +17,7 @@ A personal portfolio website for Pham Van Nam, a Computer Science student and Fr
 - Responsive single-page portfolio
 - Light/dark theme toggle
 - English/Vietnamese language toggle for the main portfolio UI
-- Lightweight 3D QA Workspace hero scene
+- Interactive 3D QA Workspace hero scene
 - QA-focused hero section
 - About section
 - QA skills section
@@ -52,16 +52,17 @@ Online preview pages:
 
 ## 3D QA Workspace
 
-The portfolio includes a lightweight 3D QA Workspace visual built with `three` and `@react-three/fiber`.
+The portfolio includes an interactive QA Workspace visual built with `three` and `@react-three/fiber`.
 
 - Uses primitive geometries only.
 - Does not use external model assets.
 - Does not use 3D text, controls, shadows, or heavy animation.
 - Canvas content is decorative.
-- Important content remains available as normal HTML.
-- Mobile uses a lightweight fallback QA card.
+- Important content remains available as normal HTML controls.
+- Users can explore QA topics such as test cases, bug reports, API testing, Selenium automation, and SQL validation.
+- Mobile uses a lightweight interactive fallback QA card.
 
-The 3D scene is intentionally small and subtle to keep the portfolio readable, fast, and recruiter-friendly.
+The 3D scene is intentionally lightweight to keep the portfolio readable, fast, accessible, and recruiter-friendly.
 
 ## Project Detail Pages
 
@@ -113,6 +114,7 @@ src/
     experience.ts
     postmanCollectionPreview.ts
     projects.ts
+    qaWorkspaceItems.ts
     skills.ts
     testCases.ts
     workflow.ts

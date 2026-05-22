@@ -186,33 +186,37 @@ const translations = {
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);
 
 export function PreferencesProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") {
-      return "light";
-    }
+  const [theme, setTheme] = useState<Theme>("light");
+  const [language, setLanguage] = useState<Language>("en");
+  const [hasLoadedPreferences, setHasLoadedPreferences] = useState(false);
 
-    const savedTheme = window.localStorage.getItem("theme") as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      const savedTheme = window.localStorage.getItem("theme") as Theme | null;
+      const savedLanguage = window.localStorage.getItem("language") as Language | null;
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    return savedTheme ?? (prefersDark ? "dark" : "light");
-  });
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window === "undefined") {
-      return "en";
-    }
+      setTheme(savedTheme ?? (prefersDark ? "dark" : "light"));
+      setLanguage(savedLanguage ?? "en");
+      setHasLoadedPreferences(true);
+    }, 0);
 
-    return (window.localStorage.getItem("language") as Language | null) ?? "en";
-  });
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
+    if (!hasLoadedPreferences) return;
+
     window.localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [hasLoadedPreferences, theme]);
 
   useEffect(() => {
     document.documentElement.lang = language === "vi" ? "vi" : "en";
+    if (!hasLoadedPreferences) return;
+
     window.localStorage.setItem("language", language);
-  }, [language]);
+  }, [hasLoadedPreferences, language]);
 
   const value = useMemo(
     () => ({
