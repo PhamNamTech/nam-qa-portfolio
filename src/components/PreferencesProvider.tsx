@@ -10,15 +10,7 @@ import {
 } from "react";
 
 type Theme = "light" | "dark";
-type Language = "en" | "vi";
-
-type PreferencesContextValue = {
-  theme: Theme;
-  language: Language;
-  toggleTheme: () => void;
-  toggleLanguage: () => void;
-  t: typeof translations.en;
-};
+export type Language = "en" | "vi";
 
 const translations = {
   en: {
@@ -77,6 +69,7 @@ const translations = {
       projects: "projects",
       empty: "No projects found for this category yet.",
       details: "View Details",
+      github: "View GitHub",
     },
     artifacts: {
       label: "Artifacts",
@@ -96,6 +89,12 @@ const translations = {
       copied: "Email address copied. Your mail app should open if supported.",
       opening: "Opening your mail app if supported.",
       info: "Contact Information",
+    },
+    qaWorkspace: {
+      title: "QA Workspace",
+      subtitle: "Manual • API • Automation • SQL",
+      selectedTopic: "Selected QA workspace topic",
+      fallbackTitle: "Interactive QA Topics",
     },
     footer: {
       text: "Fresher Software Tester / QA Automation Engineer.",
@@ -133,7 +132,7 @@ const translations = {
     },
     about: {
       label: "Giới thiệu",
-      title: "Người học QA thực tế",
+      title: "Người học QA theo hướng thực tế",
       p1: "Tôi là Pham Van Nam, sinh viên Khoa học máy tính tại Đại học Sài Gòn, định hướng theo Software Testing và QA Automation.",
       p2: "Tôi có kinh nghiệm thực tập Tester / QC Intern tại AGEST Vietnam, tham gia phân tích yêu cầu, thiết kế test case, kiểm thử chức năng và hồi quy, viết bug report theo dạng Jira và verify bug fix.",
       p3: "Hiện tại tôi tập trung củng cố nền tảng manual testing và từng bước cải thiện kỹ năng automation với Selenium WebDriver, Postman, SQL và Git.",
@@ -157,6 +156,7 @@ const translations = {
       projects: "dự án",
       empty: "Chưa có dự án cho nhóm này.",
       details: "Xem chi tiết",
+      github: "Xem GitHub",
     },
     artifacts: {
       label: "Tài liệu QA",
@@ -177,10 +177,24 @@ const translations = {
       opening: "Đang mở ứng dụng mail nếu trình duyệt hỗ trợ.",
       info: "Thông tin liên hệ",
     },
+    qaWorkspace: {
+      title: "Không gian QA",
+      subtitle: "Manual • API • Automation • SQL",
+      selectedTopic: "Chủ đề QA đang chọn",
+      fallbackTitle: "Các chủ đề QA tương tác",
+    },
     footer: {
       text: "Fresher Software Tester / QA Automation Engineer.",
     },
   },
+};
+
+type PreferencesContextValue = {
+  theme: Theme;
+  language: Language;
+  toggleTheme: () => void;
+  toggleLanguage: () => void;
+  t: typeof translations.en;
 };
 
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);

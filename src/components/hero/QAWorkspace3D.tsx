@@ -4,7 +4,13 @@ import Link from "next/link";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useState } from "react";
 import type { Group, Mesh } from "three";
-import { qaWorkspaceItems, type QaWorkspaceItemId } from "@/data/qaWorkspaceItems";
+import { usePreferences } from "@/components/PreferencesProvider";
+import {
+  localizeQaSkills,
+  localizeQaText,
+  qaWorkspaceItems,
+  type QaWorkspaceItemId,
+} from "@/data/qaWorkspaceItems";
 
 const desktopCardPositions: Record<QaWorkspaceItemId, string> = {
   "test-cases": "left-5 top-20",
@@ -245,19 +251,27 @@ function Scene({ activeItemId }: { activeItemId: QaWorkspaceItemId }) {
 export default function QAWorkspace3D() {
   const [activeItemId, setActiveItemId] = useState<QaWorkspaceItemId>("test-cases");
   const [hoveredItemId, setHoveredItemId] = useState<QaWorkspaceItemId | null>(null);
+  const { language, t } = usePreferences();
   const activeItem = useMemo(
     () => qaWorkspaceItems.find((item) => item.id === activeItemId) ?? qaWorkspaceItems[0],
     [activeItemId],
   );
+  const activeTitle = localizeQaText(activeItem.title, language);
+  const activeSubtitle = localizeQaText(activeItem.subtitle, language);
+  const activeDescription = localizeQaText(activeItem.description, language);
+  const activeSkills = localizeQaSkills(activeItem.skills, language);
+  const activeCta = localizeQaText(activeItem.ctaLabel, language);
 
   return (
     <div className="relative min-h-[620px] w-full overflow-hidden md:min-h-[660px]">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-emerald-50/60" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-50/80 via-white to-emerald-50/60 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
 
       <div className="pointer-events-none absolute left-5 top-5 z-10">
-        <p className="text-xs font-bold uppercase tracking-wide text-blue-600">QA Workspace</p>
-        <p className="mt-1 text-sm font-semibold text-slate-700">
-          Manual &bull; API &bull; Automation &bull; SQL
+        <p className="text-xs font-bold uppercase tracking-wide text-blue-600 dark:text-blue-300">
+          {t.qaWorkspace.title}
+        </p>
+        <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-200">
+          {t.qaWorkspace.subtitle}
         </p>
       </div>
 
@@ -274,8 +288,12 @@ export default function QAWorkspace3D() {
               activeItemId === item.id ? "qa-command-card-active" : ""
             } ${hoveredItemId === item.id ? "border-blue-300" : ""}`}
           >
-            <span className="block text-xs font-bold text-slate-950">{item.title}</span>
-            <span className="mt-0.5 block text-[11px] font-medium text-slate-500">{item.subtitle}</span>
+            <span className="block text-xs font-bold text-slate-950 dark:text-slate-50">
+              {localizeQaText(item.title, language)}
+            </span>
+            <span className="mt-0.5 block text-[11px] font-medium text-slate-500 dark:text-slate-300">
+              {localizeQaText(item.subtitle, language)}
+            </span>
           </button>
         ))}
       </div>
@@ -294,8 +312,12 @@ export default function QAWorkspace3D() {
             } ${hoveredItemId === item.id ? "border-blue-300" : ""}`}
             style={{ animationDelay: `${index * 120}ms` }}
           >
-            <span className="block text-xs font-bold text-slate-950">{item.title}</span>
-            <span className="mt-0.5 block text-[11px] font-medium text-slate-500">{item.subtitle}</span>
+            <span className="block text-xs font-bold text-slate-950 dark:text-slate-50">
+              {localizeQaText(item.title, language)}
+            </span>
+            <span className="mt-0.5 block text-[11px] font-medium text-slate-500 dark:text-slate-300">
+              {localizeQaText(item.subtitle, language)}
+            </span>
           </button>
         ))}
       </div>
@@ -311,27 +333,27 @@ export default function QAWorkspace3D() {
       </div>
 
       <section
-        aria-label="Selected QA workspace topic"
-        className="absolute inset-x-5 bottom-5 z-30 rounded-2xl border border-slate-200 bg-white/94 p-4 shadow-sm backdrop-blur md:p-5"
+        aria-label={t.qaWorkspace.selectedTopic}
+        className="absolute inset-x-5 bottom-5 z-30 rounded-2xl border border-slate-200 bg-white/94 p-4 shadow-sm backdrop-blur md:p-5 dark:border-slate-700 dark:bg-slate-900/95"
       >
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div className="min-w-0">
-            <p className="text-xs font-bold uppercase text-blue-600">{activeItem.subtitle}</p>
-            <h2 className="mt-1 text-xl font-bold text-slate-950">{activeItem.title}</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{activeItem.description}</p>
+            <p className="text-xs font-bold uppercase text-blue-600 dark:text-blue-300">{activeSubtitle}</p>
+            <h2 className="mt-1 text-xl font-bold text-slate-950 dark:text-slate-50">{activeTitle}</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{activeDescription}</p>
           </div>
           <Link
             href={activeItem.href}
             className="inline-flex shrink-0 items-center justify-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
           >
-            {activeItem.ctaLabel}
+            {activeCta}
           </Link>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
-          {activeItem.skills.map((skill) => (
+          {activeSkills.map((skill) => (
             <span
               key={skill}
-              className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700"
+              className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/30 dark:bg-blue-500/15 dark:text-blue-200"
             >
               {skill}
             </span>

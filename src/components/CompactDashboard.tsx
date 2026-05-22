@@ -140,10 +140,10 @@ export default function CompactDashboard() {
         </aside>
 
         <div className="min-w-0 space-y-5">
-          <section className="hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm md:block">
+          <section className="hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm md:block dark:border-slate-800 dark:bg-slate-900">
             <div className="relative">
-              <div className="absolute right-10 top-8 h-28 w-28 rounded-full bg-blue-200/30 blur-3xl" />
-              <div className="absolute bottom-8 left-10 h-24 w-24 rounded-full bg-emerald-200/30 blur-3xl" />
+              <div className="absolute right-10 top-8 h-28 w-28 rounded-full bg-blue-200/30 blur-3xl dark:bg-blue-500/10" />
+              <div className="absolute bottom-8 left-10 h-24 w-24 rounded-full bg-emerald-200/30 blur-3xl dark:bg-emerald-500/10" />
               {canRender3D ? <QAWorkspace3D /> : <QAWorkspaceFallback />}
             </div>
           </section>
@@ -259,7 +259,7 @@ export default function CompactDashboard() {
                         rel="noopener noreferrer"
                         className="inline-flex text-sm font-semibold text-slate-500 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
                       >
-                        View GitHub
+                        {t.projects.github}
                       </a>
                     ) : null}
                   </div>
