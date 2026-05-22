@@ -280,7 +280,7 @@ export default function QAWorkspace3D() {
         ))}
       </div>
 
-      <div className="absolute inset-0 z-40 hidden lg:block">
+      <div className="pointer-events-none absolute inset-0 z-40 hidden lg:block">
         {qaWorkspaceItems.map((item, index) => (
           <button
             key={item.id}
@@ -289,7 +289,7 @@ export default function QAWorkspace3D() {
             onClick={() => setActiveItemId(item.id)}
             onMouseEnter={() => setHoveredItemId(item.id)}
             onMouseLeave={() => setHoveredItemId(null)}
-            className={`qa-command-card absolute ${desktopCardPositions[item.id]} text-left transition duration-200 hover:-translate-y-1 hover:border-blue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 ${
+            className={`qa-command-card pointer-events-auto absolute ${desktopCardPositions[item.id]} text-left transition duration-200 hover:-translate-y-1 hover:border-blue-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 ${
               activeItemId === item.id ? "qa-command-card-active" : ""
             } ${hoveredItemId === item.id ? "border-blue-300" : ""}`}
             style={{ animationDelay: `${index * 120}ms` }}
