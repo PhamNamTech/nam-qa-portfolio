@@ -19,6 +19,7 @@ export default function Navbar() {
     { label: t.nav.experience, href: "/#experience" },
     { label: t.nav.projects, href: "/#projects" },
     { label: t.nav.artifacts, href: "/#artifacts" },
+    { label: t.nav.workflow, href: "/#workflow" },
   ];
 
   function highlightSection(sectionId: string) {
@@ -118,13 +119,13 @@ export default function Navbar() {
           Pham Van Nam
         </Link>
 
-        <div className="hidden items-center gap-5 md:flex">
+        <div className="hidden items-center gap-3 lg:gap-5 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={(event) => handleNavClick(event, link.href)}
-              className="text-sm font-medium text-slate-600 transition hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 dark:!text-slate-300 dark:hover:!text-blue-300"
+              className="text-xs font-medium text-slate-600 transition hover:text-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 lg:text-sm dark:!text-slate-300 dark:hover:!text-blue-300"
             >
               {link.label}
             </Link>

@@ -136,7 +136,7 @@ function Scene() {
     <>
       <ambientLight intensity={0.8} />
       <directionalLight position={[4, 5, 3]} intensity={0.9} />
-      <group position={[0, 0.08, 0]} rotation={[0, 0.08, 0]}>
+      <group position={[0, 0.02, 0]} rotation={[0, 0.08, 0]} scale={1.08}>
         <Laptop />
         <ChecklistCard />
         <ApiNodes />
@@ -148,7 +148,7 @@ function Scene() {
 
 export default function QAWorkspace3D() {
   return (
-    <div className="h-[360px] w-full md:h-[420px]" aria-hidden="true">
+    <div className="h-[320px] w-full md:h-[360px]" aria-hidden="true">
       <Canvas
         camera={{ position: [4, 3, 5], fov: 42 }}
         dpr={[1, 1.5]}
