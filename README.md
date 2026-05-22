@@ -24,6 +24,7 @@ A personal portfolio website for Pham Van Nam, a Computer Science student and Fr
 - Internship experience section
 - Testing projects with category filtering
 - Dedicated project detail pages
+- Real GitHub-linked Selenium automation practice project
 - Testing artifacts section with sample QA files
 - Online previews for the test case sheet and Postman collection
 - Sticky navigation shared across homepage and detail pages
@@ -73,6 +74,12 @@ The portfolio includes dedicated pages for each QA practice project:
 - `/projects/selenium-web-automation`
 - `/projects/test-case-design-ep-bva`
 - `/projects/bug-report-samples`
+
+The Selenium automation project links to a real GitHub practice repository:
+
+- `https://github.com/PhamNamTech/agest-selenium-phamvannam`
+
+It is presented as a personal QA automation practice project and does not claim production-level automation coverage.
 
 ## Folder Structure
 

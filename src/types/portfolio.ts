@@ -38,6 +38,7 @@ export type Project = {
   slug: string;
   category: ProjectCategory;
   shortDescription: string;
+  githubUrl?: string;
   overview: string;
   testingApproach?: string;
   testingScope: string[];
@@ -45,6 +46,9 @@ export type Project = {
   automatedFlows?: string[];
   tools: string[];
   deliverables: string[];
+  projectStructure?: string[];
+  howToRun?: string[];
+  currentStatus?: string;
   sampleTestCases?: string[];
   sampleBugReports?: BugReport[];
   artifactLinks?: ArtifactLink[];

@@ -9,6 +9,7 @@ export default function ProjectCard({
   slug,
   category,
   shortDescription,
+  githubUrl,
   tags,
 }: Project) {
   const { t } = usePreferences();
@@ -30,12 +31,24 @@ export default function ProjectCard({
           </span>
         ))}
       </div>
-      <Link
-        href={`/projects/${slug}`}
-        className="mt-6 inline-flex w-fit items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
-      >
-        {t.projects.details}
-      </Link>
+      <div className="mt-6 flex flex-wrap gap-2">
+        <Link
+          href={`/projects/${slug}`}
+          className="inline-flex w-fit items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+        >
+          {t.projects.details}
+        </Link>
+        {githubUrl ? (
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-fit items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+          >
+            View GitHub
+          </a>
+        ) : null}
+      </div>
     </article>
   );
 }

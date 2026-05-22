@@ -245,12 +245,24 @@ export default function CompactDashboard() {
                   <p className="mt-2 text-sm leading-6 text-slate-600">
                     {project.shortDescription}
                   </p>
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="mt-4 inline-flex text-sm font-semibold text-blue-600 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
-                  >
-                    {t.projects.details}
-                  </Link>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="inline-flex text-sm font-semibold text-blue-600 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                    >
+                      {t.projects.details}
+                    </Link>
+                    {project.githubUrl ? (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex text-sm font-semibold text-slate-500 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                      >
+                        View GitHub
+                      </a>
+                    ) : null}
+                  </div>
                 </article>
               ))}
             </div>

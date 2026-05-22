@@ -148,13 +148,29 @@ function ProjectContent({ project }: { project: Project }) {
         </DetailSection>
       ) : null}
 
-      <DetailSection title="Tools">
+      <DetailSection title={project.category === "Automation" ? "Tools & Technologies" : "Tools"}>
         <BulletList items={project.tools} />
       </DetailSection>
 
       <DetailSection title="Deliverables">
         <BulletList items={project.deliverables} />
       </DetailSection>
+
+      {project.projectStructure ? (
+        <DetailSection title="Project Structure">
+          <BulletList items={project.projectStructure} />
+        </DetailSection>
+      ) : null}
+
+      {project.howToRun ? (
+        <DetailSection title="How to Run">
+          <ol className="list-decimal space-y-3 pl-5 text-sm leading-6 text-slate-600">
+            {project.howToRun.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+        </DetailSection>
+      ) : null}
 
       {project.sampleTestCases ? (
         <DetailSection title={project.category === "Automation" ? "Good Practices Applied" : "Sample Test Cases"}>
@@ -178,29 +194,52 @@ function ProjectContent({ project }: { project: Project }) {
         </DetailSection>
       ) : null}
 
+      {project.currentStatus ? (
+        <DetailSection title="Current Status">
+          <p className="text-base leading-8 text-slate-600">{project.currentStatus}</p>
+        </DetailSection>
+      ) : null}
+
       {project.artifactLinks ? (
         <DetailSection title="Artifact Links">
           <div className="flex flex-wrap gap-3">
             {project.artifactLinks.map((artifact) => (
-              <Link
-                key={artifact.href}
-                href={artifact.href}
-                className="inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
-              >
-                {artifact.label}
-                <span className="rounded-full bg-white px-2 py-0.5 text-xs text-blue-700">
-                  {artifact.type}
-                </span>
-                <ExternalLink size={14} aria-hidden="true" />
-              </Link>
+              artifact.href.startsWith("http") ? (
+                <a
+                  key={artifact.href}
+                  href={artifact.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                >
+                  {artifact.label}
+                  <span className="rounded-full bg-white px-2 py-0.5 text-xs text-blue-700">
+                    {artifact.type}
+                  </span>
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
+              ) : (
+                <Link
+                  key={artifact.href}
+                  href={artifact.href}
+                  className="inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                >
+                  {artifact.label}
+                  <span className="rounded-full bg-white px-2 py-0.5 text-xs text-blue-700">
+                    {artifact.type}
+                  </span>
+                  <ExternalLink size={14} aria-hidden="true" />
+                </Link>
+              )
             ))}
           </div>
         </DetailSection>
       ) : null}
 
       <p className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm leading-6 text-emerald-800">
-        These materials are sample/demo artifacts created for portfolio purposes and do not contain
-        confidential company or client information.
+        {project.category === "Automation"
+          ? "This is a personal QA automation practice project created for portfolio purposes."
+          : "These materials are sample/demo artifacts created for portfolio purposes and do not contain confidential company or client information."}
       </p>
     </div>
   );
@@ -235,6 +274,17 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">
             {project.shortDescription}
           </p>
+          {project.githubUrl ? (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+            >
+              GitHub Repository
+              <ExternalLink size={14} aria-hidden="true" />
+            </a>
+          ) : null}
         </header>
 
         <div className="mt-6">
