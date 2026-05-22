@@ -182,7 +182,7 @@ function ProjectContent({ project }: { project: Project }) {
         <DetailSection title="Artifact Links">
           <div className="flex flex-wrap gap-3">
             {project.artifactLinks.map((artifact) => (
-              <a
+              <Link
                 key={artifact.href}
                 href={artifact.href}
                 className="inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:border-blue-300 hover:bg-blue-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
@@ -192,7 +192,7 @@ function ProjectContent({ project }: { project: Project }) {
                   {artifact.type}
                 </span>
                 <ExternalLink size={14} aria-hidden="true" />
-              </a>
+              </Link>
             ))}
           </div>
         </DetailSection>

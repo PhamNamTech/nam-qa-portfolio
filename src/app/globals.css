@@ -33,6 +33,40 @@ section {
   scroll-margin-top: 88px;
 }
 
+.section-highlight,
+section:target {
+  animation: section-pop 800ms ease-out;
+}
+
+@keyframes section-pop {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: none;
+  }
+
+  35% {
+    transform: translateY(-5px) scale(1.006);
+    box-shadow: 0 0 0 4px rgb(37 99 235 / 0.12);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .section-highlight,
+  section:target {
+    animation: none;
+    box-shadow: 0 0 0 3px rgb(37 99 235 / 0.14);
+  }
+}
+
 .dark body {
   background: #020617 !important;
   color: #e2e8f0 !important;

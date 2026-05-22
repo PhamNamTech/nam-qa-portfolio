@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import { PreferencesProvider } from "@/components/PreferencesProvider";
 import "./globals.css";
 
@@ -48,7 +50,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${beVietnam.variable} scroll-smooth antialiased`}>
       <body>
-        <PreferencesProvider>{children}</PreferencesProvider>
+        <PreferencesProvider>
+          <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-200">
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
+        </PreferencesProvider>
       </body>
     </html>
   );

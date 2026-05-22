@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowDownToLine, Mail, MapPin, Moon, Sun } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { artifacts } from "@/data/artifacts";
 import { contactInfo, contactItems } from "@/data/contact";
 import { experiences } from "@/data/experience";
@@ -10,6 +11,12 @@ import { projects } from "@/data/projects";
 import { skillCategories } from "@/data/skills";
 import { workflowSteps } from "@/data/workflow";
 import { usePreferences } from "@/components/PreferencesProvider";
+import QAWorkspaceFallback from "@/components/hero/QAWorkspaceFallback";
+
+const QAWorkspace3D = dynamic(() => import("@/components/hero/QAWorkspace3D"), {
+  ssr: false,
+  loading: () => <QAWorkspaceFallback />,
+});
 
 const projectFilters = [
   "All",
@@ -25,6 +32,7 @@ type ProjectFilter = (typeof projectFilters)[number];
 export default function CompactDashboard() {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("All");
   const [emailStatus, setEmailStatus] = useState("");
+  const [canRender3D, setCanRender3D] = useState(false);
   const { theme, toggleTheme, t } = usePreferences();
 
   const filteredProjects =
@@ -40,6 +48,16 @@ export default function CompactDashboard() {
       setEmailStatus(t.contact.opening);
     }
   }
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 768px)");
+    const updatePreference = () => setCanRender3D(query.matches);
+
+    updatePreference();
+    query.addEventListener("change", updatePreference);
+
+    return () => query.removeEventListener("change", updatePreference);
+  }, []);
 
   return (
     <main className="bg-slate-50 text-slate-900 transition-colors duration-200">
@@ -132,6 +150,17 @@ export default function CompactDashboard() {
         </aside>
 
         <div className="space-y-5">
+          <section className="hidden overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm md:block">
+            <div className="relative">
+              <div className="absolute right-10 top-8 h-28 w-28 rounded-full bg-blue-200/30 blur-3xl" />
+              <div className="absolute bottom-8 left-10 h-24 w-24 rounded-full bg-emerald-200/30 blur-3xl" />
+              {canRender3D ? <QAWorkspace3D /> : <QAWorkspaceFallback />}
+            </div>
+          </section>
+          <div className="md:hidden">
+            <QAWorkspaceFallback />
+          </div>
+
           <section id="about" className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-bold uppercase text-blue-600">{t.about.label}</p>
             <h2 className="mt-2 text-2xl font-bold text-slate-950">{t.about.title}</h2>
@@ -247,15 +276,35 @@ export default function CompactDashboard() {
                   <p className="text-xs font-bold uppercase text-emerald-600">{artifact.type}</p>
                   <h3 className="mt-2 text-base font-bold text-slate-950">{artifact.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{artifact.description}</p>
-                  {artifact.href ? (
-                    <a
-                      href={artifact.href}
-                      download={artifact.download}
-                      className="mt-4 inline-flex text-sm font-semibold text-blue-600 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
-                    >
-                      {artifact.buttonText}
-                    </a>
-                  ) : null}
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    {artifact.href ? (
+                      artifact.download ? (
+                        <a
+                          href={artifact.href}
+                          download
+                          className="inline-flex text-sm font-semibold text-blue-600 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                        >
+                          {artifact.buttonText}
+                        </a>
+                      ) : (
+                        <Link
+                          href={artifact.href}
+                          className="inline-flex text-sm font-semibold text-blue-600 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                        >
+                          {artifact.buttonText}
+                        </Link>
+                      )
+                    ) : null}
+                    {artifact.secondaryHref ? (
+                      <a
+                        href={artifact.secondaryHref}
+                        download={artifact.secondaryDownload}
+                        className="inline-flex text-sm font-semibold text-slate-500 transition hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
+                      >
+                        {artifact.secondaryButtonText}
+                      </a>
+                    ) : null}
+                  </div>
                 </article>
               ))}
             </div>

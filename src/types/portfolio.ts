@@ -58,6 +58,9 @@ export type Artifact = {
   buttonText: string;
   href?: string;
   download?: boolean;
+  secondaryButtonText?: string;
+  secondaryHref?: string;
+  secondaryDownload?: boolean;
 };
 
 export type WorkflowStep = {

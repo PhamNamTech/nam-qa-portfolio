@@ -48,8 +48,8 @@ export const projects: Project[] = [
     artifactLinks: [
       {
         label: "Test Case Sheet",
-        href: "/artifacts/test-case-sheet-sample.csv",
-        type: "CSV",
+        href: "/artifacts/test-case-sheet",
+        type: "View Page",
       },
       {
         label: "Bug Report Sample",
@@ -116,8 +116,8 @@ export const projects: Project[] = [
     artifactLinks: [
       {
         label: "Postman Collection",
-        href: "/artifacts/postman-user-management-collection.json",
-        type: "JSON",
+        href: "/artifacts/postman-collection",
+        type: "View Page",
       },
       {
         label: "Bug Report Sample",
@@ -214,8 +214,8 @@ export const projects: Project[] = [
     artifactLinks: [
       {
         label: "Test Case Sheet",
-        href: "/artifacts/test-case-sheet-sample.csv",
-        type: "CSV",
+        href: "/artifacts/test-case-sheet",
+        type: "View Page",
       },
     ],
     tags: ["EP", "BVA", "Boundary Testing", "Input Validation"],

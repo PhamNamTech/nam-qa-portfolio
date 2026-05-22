@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDownToLine, CheckCircle2, Mail, ShieldCheck } from "lucide-react";
+import { ArrowDownToLine, CheckCircle2, ShieldCheck } from "lucide-react";
 import { contactInfo } from "@/data/contact";
 import { usePreferences } from "@/components/PreferencesProvider";
 
@@ -49,13 +49,6 @@ export default function HeroSection() {
             >
               <ArrowDownToLine size={16} aria-hidden="true" />
               {t.hero.cv}
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600 sm:w-auto"
-            >
-              <Mail size={16} aria-hidden="true" />
-              {t.hero.contact}
             </a>
           </div>
         </div>

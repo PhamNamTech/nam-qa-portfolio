@@ -6,9 +6,11 @@ export const artifacts: Artifact[] = [
     description:
       "A structured test case document including test case ID, scenario, preconditions, steps, test data, expected result, actual result, status, and note.",
     type: "Documentation",
-    href: "/artifacts/test-case-sheet-sample.csv",
-    buttonText: "Download Sample",
-    download: true,
+    href: "/artifacts/test-case-sheet",
+    buttonText: "View Online",
+    secondaryHref: "/artifacts/test-case-sheet-sample.csv",
+    secondaryButtonText: "Download CSV",
+    secondaryDownload: true,
   },
   {
     title: "Bug Report Sample",
@@ -23,9 +25,11 @@ export const artifacts: Artifact[] = [
     description:
       "A sample API testing collection with positive and negative test cases for user management APIs.",
     type: "API Testing",
-    href: "/artifacts/postman-user-management-collection.json",
-    buttonText: "Download Collection",
-    download: true,
+    href: "/artifacts/postman-collection",
+    buttonText: "View Online",
+    secondaryHref: "/artifacts/postman-user-management-collection.json",
+    secondaryButtonText: "Download JSON",
+    secondaryDownload: true,
   },
   {
     title: "Selenium Test Scripts",
